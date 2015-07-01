@@ -42,9 +42,19 @@
 
         window.onload = cargarFunciones;
     </script>
-@endsection
-@section('content')
+    @endsection
+    @section('content')
+                {!! Form::open(array('route' =>'post.search','method' =>"post", 'class' => 'navbar-form navbar-left pull-right', 'role'=>'search')) !!}
+                {!! Form::text('post', null, array( 'placeholder' => 'Search  post...' )) !!}
+                {!! Form::submit('Search') !!}
+                {!! Form::close() !!}
+
+                   {!! Form::open(array('route' =>'profile.search','method' =>"post", 'class' => 'navbar-form navbar-left pull-right', 'role'=>'search')) !!}
+                    {!! Form::text('user', null, array( 'placeholder' => 'Search  User...' )) !!}
+                    {!! Form::submit('Search') !!}
+                    {!! Form::close() !!}
     <div class="container">
+    <img src="{{ ($user->image == null) ? '/uploads/15707.jpg' : $user->image}}" alt="" id="img_perfil">
         <div class="row">
 
                 <div class="form_publicar">
@@ -64,11 +74,13 @@
                                 <td colspan="6"  id="separador"></td>
                             </tr>
                             <tr>
-                                <td rowspan="2" colspan="1">Foto</td>
+                                <td rowspan="2" colspan="1"><img src="{{ ($user->image == null) ? '/uploads/15707.jpg' : $user->image}}" alt="" id="img_icono"></td>
                                 <td colspan="5">{{$post->user->name}}</td>
+
                             </tr>
                             <tr>
                                 <td colspan="5">{{$post->created_at}}</td>
+                                <td colspan="5">{{$post->user->pais}}</td>
                             </tr>
                             <tr>
                                 <td colspan="6">{{$post->body}}</td>

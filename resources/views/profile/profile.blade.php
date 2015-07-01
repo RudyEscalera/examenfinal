@@ -55,12 +55,11 @@
         <div class="row">
 
                 <div class="jumbotron">
-                    <h3>Foto</h3>
+                    <img src="{{ ($user->image == null) ? '/uploads/15707.jpg' : $user->image}}" alt="" id="img_perfil">
                     <h3>Nombre: {{$user->name}}</h3>
-                    <h3>Siguiendo: 12</h3>
-                    <h3>Seguidores: 35</h3>
-                    <h3>Publicaciones: 25</h3>
-
+                    <h3>Siguiendo: {{$user->idols->count()-1}}</h3>
+                    <h3>Seguidores: {{App\Idol::where('idol_id', $user->id)->count()-1}}</h3>
+                    <h3>Publicaciones: {{$user->posts->count()}}</h3>
 
                     @if($user->id != Auth::id())
                         @include('partials.form_seguir')
@@ -82,7 +81,7 @@
                                         <td colspan="6"  id="separador"></td>
                                     </tr>
                                     <tr>
-                                        <td rowspan="2" colspan="1">Foto</td>
+                                        <img src="{{ ($user->image == null) ? '/uploads/15707.jpg' : $user->image}}" alt="" id="img_perfil">
                                         <td colspan="5">{{$post->user->name}}</td>
                                     </tr>
                                     <tr>

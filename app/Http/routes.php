@@ -20,12 +20,24 @@ Route::get('auth/logout', 'Auth\AuthController@getLogout');
 // Registration routes...
 Route::get('auth/register', 'Auth\AuthController@getRegister');
 Route::post('auth/register', 'Auth\AuthController@postRegister');
+Route::resource('likes','LikesController');
 
 
+Route::get('/photo', [
+    'as' => 'choose_photo', 'uses' => 'ProfilesController@choosePhoto'
+]);
+Route::get('/edit', [
+    'as' => 'edit', 'uses' => 'ProfilesController@edit'
+]);
 
+Route::post('/save', [
+    'as' => 'save_photo', 'uses' => 'ProfilesController@savePhoto'
+]);
 Route::get('/index', [
     'as' => 'show_index', 'uses' => 'ProfilesController@showIndex'
 ]);
+Route::post('user/search', array('as' => 'profile.search', 'uses' => 'ProfilesController@userSearch'));
+Route::post('post/search', array('as' => 'post.search', 'uses' => 'PostsController@postSearch'));
 Route::get('/{name}', [
     'as' => 'show_profile', 'uses' => 'ProfilesController@showProfile'
 ]);

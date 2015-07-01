@@ -35,7 +35,7 @@ class AuthController extends Controller
     }
 
 
-    protected $redirectPath = '/index';
+    protected $redirectPath = '/photo';
     /**
      * Get a validator for an incoming registration request.
      *

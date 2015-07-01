@@ -32,7 +32,14 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
-
+     public function pais()
+    {
+        return $this->belongsTo('App\Pais');
+    }
+    public function likes()
+    {
+        return $this->hasMany('App\Like');
+    }
     public function posts()
     {
         return $this->hasMany('App\Post');
@@ -40,6 +47,10 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     public function idols()
     {
         return $this->hasMany('App\Idol');
+    }
+    public function scopeName($query, $name)
+    {
+        $query->where('name',"LIKE","%$name%");
     }
 
 
